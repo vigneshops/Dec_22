@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                git https://github.com/vigneshops/Dec_22.git
+                git 'https://github.com/vigneshops/Dec_22.git'
             }
-			
-        }
 		        stage('Build') {
             steps {
                 sh 'mvn clean'
 				sh 'mvn install'
             }
-			
+	    }
+	}		
         }
+	}

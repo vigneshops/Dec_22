@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('SCM') {
+            steps {
+                git https://github.com/vigneshops/Dec_22.git
+            }
+			
+        }
+		        stage('Build') {
+            steps {
+                sh 'mvn clean'
+				sh 'mvn install'
+            }
+			
+        }
+		stage('Build Docker Image') {
+		    when {
+			   branch 'master'
+			   }
+            steps {
+			   script {
+			     app = docker.build("dockerpandian/ddeploy-9am")
+				 app.inside {
+				   sh 'echo $(curl localhost:8080)'
+				            }
+                       }	
+                  }
+		}                                    
+		}
+}

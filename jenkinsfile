@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                git 'https://github.com/awspandian/dd-feb.git'
+                git 'https://github.com/vigneshops/Dec_22.git'
             }
 			
         }
@@ -21,7 +21,7 @@ pipeline {
 			   }
             steps {
 			   script {
-			     app = docker.build("dockerpandian/ddeploy-9am")
+			     app = docker.build("vigneshops/ddeploy-9am")
 				 app.inside {
 				   sh 'echo $(curl localhost:8080)'
 				            }
